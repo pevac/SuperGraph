@@ -403,6 +403,8 @@
             <Setter Property="IsVerticalRailEnabled" Value="True" />
             <Setter Property="IsTabStop" Value="False" />
             <Setter Property="ZoomMode" Value="Enabled" />
+            <Setter Property="IsScrollInertiaEnabled" Value="False" />
+            <Setter Property="IsZoomInertiaEnabled" Value="False" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Setter Property="VerticalContentAlignment" Value="Top" />
             <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
@@ -558,7 +560,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
 
     </Page.Resources>
 
