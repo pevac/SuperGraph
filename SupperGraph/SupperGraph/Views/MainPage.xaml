@@ -28,7 +28,8 @@
         <controls:GraphPartsDataTemplateSelector x:Key="GraphPartsDataTemplateSelector">
             <controls:GraphPartsDataTemplateSelector.EdgeDataTemplate>
                 <DataTemplate>
-                    <Line Stroke="Black"       
+                    <Line Stroke="Black"  
+                          IsTapEnabled="False"
                           X1="{Binding LeftNode.X}"
                           X2="{Binding RightNode.X}"
                           Y1="{Binding LeftNode.Y}"
@@ -38,6 +39,7 @@
             <controls:GraphPartsDataTemplateSelector.NodeDataTemplate>
                 <DataTemplate >
                     <ToggleButton   Content="{Binding Name}"
+                                    
                                     Style="{StaticResource ToggleButtonStyle}">
                         <ToolTipService.ToolTip>
                             <ToolTip Placement="Mouse"   BorderThickness="0" >
@@ -60,17 +62,17 @@
                                                 Command="{Binding Source={StaticResource ViewModel},  Path=DeleteNodeCommand}"
                                                 CommandParameter="{Binding}"/>
                                 <MenuFlyoutItem x:Name="RightNode"
-                                                Command="{Binding Source={StaticResource ViewModel}, Path=EdgeVertexNodeRelayCommand}"
+                                                Command="{Binding Source={StaticResource ViewModel}, Path=AddEdgeVertexFlyoutRelayCommand}"
                                                 Text="Edge from"  
                                                 Visibility="{Binding Source={StaticResource ViewModel}, Path=AddEdgeFlyoutProperty, Converter={StaticResource VisibleEdgeFromMenuFlyout}}"
                                                 CommandParameter="{Binding}"/>
                                 <MenuFlyoutItem x:Name="LeftEdgeUndirect" 
-                                                Command="{Binding Source={StaticResource ViewModel}, Path=AddEdgeUndirectRelayCommand}"
+                                                Command="{Binding Source={StaticResource ViewModel}, Path=AddUndirectEdgeFlyoutRelayCommand}"
                                                 Text="Undirect Edge to" 
                                                 Visibility="{Binding Source={StaticResource ViewModel}, Path=AddEdgeFlyoutProperty, Converter={StaticResource VisibleEdgeToMenuFlyout}}"
                                                 CommandParameter="{Binding}"/>
                                 <MenuFlyoutItem x:Name="LeftEdgeDirect" 
-                                                Command="{Binding Source={StaticResource ViewModel}, Path=AddEdgeDirectRelayCommand}"
+                                                Command="{Binding Source={StaticResource ViewModel}, Path=AddDirectEdgeFlyoutRelayCommand}"
                                                 Text="Direct Edge to" 
                                                 Visibility="{Binding Source={StaticResource ViewModel}, Path=AddEdgeFlyoutProperty, Converter={StaticResource VisibleEdgeToMenuFlyout}}"
                                                 CommandParameter="{Binding}"/>
@@ -89,6 +91,11 @@
                             <core:EventTriggerBehavior EventName="ManipulationCompleted">
                                 <core:InvokeCommandAction
                 Command="{Binding Source={StaticResource ViewModel},  Path=ManipulationCompletedRelayCommand, Mode=OneWay}"/>
+                            </core:EventTriggerBehavior>
+                            <core:EventTriggerBehavior EventName="Click">
+                                <core:InvokeCommandAction
+                Command="{Binding Source={StaticResource ViewModel},  Path=AddEdgeDelegateCommand, Mode=OneWay}"
+                CommandParameter="{Binding}"/>
                             </core:EventTriggerBehavior>
                         </interactivity:Interaction.Behaviors>
                     </ToggleButton>
@@ -581,10 +588,10 @@
                                  Command="{Binding Source={StaticResource ViewModel}}"  Tag="&#xEA39;" Content="Delete Node"/>-->
 
                     <RadioButton x:Name="AddEdgeDirectRadioButton"  Style="{StaticResource NavRadioButtonStyle}" 
-                                 Tag="&#xE7EB;"  Content="Add Direct Edge" />
+                                 Tag="&#xE7EB;"  Content="Add Direct Edge" Command="{Binding Source={StaticResource ViewModel}, Path=AllowAddDirectEdgeCommand }"/>
                     <RadioButton x:Name="AddEdgeUndirectRadioButton"  Style="{StaticResource NavRadioButtonStyle}" 
-                                 Tag="&#xE174;"  Content="Add Undirect Edge" />
-                    <RadioButton x:Name="DeleteEdgeUndirectRadioButton"  Style="{StaticResource NavRadioButtonStyle}" Tag="&#xE894;"  Content="Delete Edge" />
+                                 Tag="&#xE174;"  Content="Add Undirect Edge" Command="{Binding Source={StaticResource ViewModel}, Path=AllowAddUndirectEdgeCommand }"/>
+                    <RadioButton x:Name="DeleteEdgeRadioButton"  Style="{StaticResource NavRadioButtonStyle}" Tag="&#xE894;"  Content="Delete Edge" />
                     <RadioButton x:Name="DeleteGraphRadioButton"  Style="{StaticResource NavRadioButtonStyle}" 
                                  Command="{Binding Source={StaticResource ViewModel},  Path=DeleteGraphCommand}" Tag="&#xE74D;" Content="Delete Graph" />
                 </GridView>

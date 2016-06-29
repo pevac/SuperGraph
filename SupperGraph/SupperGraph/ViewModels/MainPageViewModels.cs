@@ -18,9 +18,8 @@ namespace SupperGraph.ViewModels
         private bool _isTappedEnableProperty;
         private Node _editNode;
         private double _width;
-        private Node _vertexNode;
         private bool _addEdgeFlyoutProperty;
-
+       
         public MainPageViewModel()
         {
             EasyGraph = new Graph();
@@ -37,10 +36,13 @@ namespace SupperGraph.ViewModels
             {
                 IsTappedEnableProperty = false;
                 AddEdgeFlyoutProperty = false;
+                AllowAddEdge = false;
+                EdgeNode = null;
+                VertexNode = null;
             });
             AllowAddNodeCommand = new DelegateCommand(() =>
             {
-                IsTappedEnableProperty = !IsTappedEnableProperty;
+                IsTappedEnableProperty = true;
             });
             DeleteGraphCommand = new DelegateCommand(() =>
             {
@@ -51,7 +53,7 @@ namespace SupperGraph.ViewModels
             {
                 EasyGraph.Nodes.Add(node);
                 OnPropertyChanged(nameof(EasyGraph));
-            });
+            }, node => IsTappedEnableProperty);
             ManipulationDeltaRelayCommand = new RelayCommand<Node>(node =>
             {
                 OnPropertyChanged(nameof(EditNode));
@@ -78,22 +80,56 @@ namespace SupperGraph.ViewModels
             {
                 OnPropertyChanged(nameof(EasyGraph));
             });
-            EdgeVertexNodeRelayCommand = new RelayCommand<Node>((node) =>
+            AddEdgeVertexFlyoutRelayCommand = new RelayCommand<Node>((node) =>
             {
                 VertexNode = node;
                 AddEdgeFlyoutProperty = true;
             });
-            AddEdgeUndirectRelayCommand = new RelayCommand<Node>((node) =>
+            AddUndirectEdgeFlyoutRelayCommand = new RelayCommand<Node>((node) =>
             {
                 EasyGraph.AddUndirectedEdge(VertexNode.NodeId, node.NodeId);
                 AddEdgeFlyoutProperty = false;
                 OnPropertyChanged(nameof(EasyGraph));
             });
-            AddEdgeDirectRelayCommand = new RelayCommand<Node>((node) =>
+            AddDirectEdgeFlyoutRelayCommand = new RelayCommand<Node>((node) =>
             {
                 EasyGraph.AdDirectedEdge(VertexNode.NodeId, node.NodeId);
                 AddEdgeFlyoutProperty = false;
                 OnPropertyChanged(nameof(EasyGraph));
+            });
+            AddEdgeDelegateCommand = new RelayCommand<Node>( node =>
+            {
+                if (EdgeNode == null)
+                {
+                    EdgeNode = node;
+                }
+                else
+                {
+                    if (EdgeNode.NodeId == node.NodeId)
+                    {
+                        return;
+                    }
+                    else if (ChooseDirectOrUndirectEdge == true)
+                    {
+                        EasyGraph.AdDirectedEdge(EdgeNode.NodeId, node.NodeId);
+                    }
+                    else
+                    {
+                        EasyGraph.AddUndirectedEdge(EdgeNode.NodeId, node.NodeId);
+                    }
+                    EdgeNode = null;
+                    OnPropertyChanged(nameof(EasyGraph));
+                }
+            }, node => AllowAddEdge);
+            AllowAddDirectEdgeCommand = new DelegateCommand(() =>
+            {
+                AllowAddEdge = true;
+                ChooseDirectOrUndirectEdge = true;
+            });
+            AllowAddUndirectEdgeCommand = new DelegateCommand(() =>
+            {
+                ChooseDirectOrUndirectEdge = false;
+                AllowAddEdge = true;
             });
         }
 
@@ -101,6 +137,9 @@ namespace SupperGraph.ViewModels
         public DelegateCommand AllowAddNodeCommand { get; private set; }
         public DelegateCommand DeleteGraphCommand { get; private set; }
         public DelegateCommand DisabledDelegateCommand { get; private set; }
+        public RelayCommand<Node> AddEdgeDelegateCommand { get; private set; }
+        public DelegateCommand AllowAddDirectEdgeCommand { get; private set; }
+        public DelegateCommand AllowAddUndirectEdgeCommand { get; private set; }
 
         public RelayCommand<Node> DeleteNodeCommand { get; private set; }
         public RelayCommand<Node> AddNodeRelayCommand { get; private set; }
@@ -110,16 +149,15 @@ namespace SupperGraph.ViewModels
         public RelayCommand<Node> ManipulationDeltaRelayCommand { get; }
         public RelayCommand ManipulationCompletedRelayCommand { get; }
         public RelayCommand EditNodeRelayCommand { get; }
-        public RelayCommand<Node> EdgeVertexNodeRelayCommand { get; }
-        public RelayCommand<Node> AddEdgeUndirectRelayCommand { get; }
-        public RelayCommand<Node> AddEdgeDirectRelayCommand { get; }
+        public RelayCommand<Node> AddEdgeVertexFlyoutRelayCommand { get; }
+        public RelayCommand<Node> AddUndirectEdgeFlyoutRelayCommand { get; }
+        public RelayCommand<Node> AddDirectEdgeFlyoutRelayCommand { get; }
 
+        private Node EdgeNode { get; set; } = null;
         public Graph EasyGraph { get; set; }
-        public Node VertexNode
-        {
-            get { return _vertexNode; }
-            set { SetProperty(ref _vertexNode, value); }
-        }
+        private Node VertexNode { get; set; } = null;
+        public bool AllowAddEdge { get; set; } = false;
+        private bool ChooseDirectOrUndirectEdge { get; set; }
         public double Width
         {
             get { return _width; }

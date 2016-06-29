@@ -13,6 +13,7 @@ namespace SupperGraph.Controls
     {
         public DataTemplate NodeDataTemplate { get; set; }
         public DataTemplate EdgeDataTemplate { get; set; }
+        public DataTemplate LoopDataTemplate { get; set; }
 
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
         {
@@ -24,7 +25,8 @@ namespace SupperGraph.Controls
             }
             else if (item is Edge)
             {
-                template = this.EdgeDataTemplate;
+                var edge = (Edge) item;
+                template = edge.LeftNode.NodeId == edge.RightNode.NodeId ? LoopDataTemplate : this.EdgeDataTemplate;
             }
             else
             {
