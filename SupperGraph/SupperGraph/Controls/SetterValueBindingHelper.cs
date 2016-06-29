@@ -5,11 +5,11 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Markup;
 
 namespace SupperGraph.Controls

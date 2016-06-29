@@ -96,12 +96,23 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\AddGridToBackground.cs" />
+    <Compile Include="Controls\CursorPointControl.cs" />
+    <Compile Include="Controls\DeltaAddNode.cs" />
     <Compile Include="Controls\EasyGraphToGraphParts.cs" />
+    <Compile Include="Controls\EdgeNodeConverter.cs" />
+    <Compile Include="Controls\EditNodeConverter.cs" />
+    <Compile Include="Controls\FlyoutAction.cs" />
+    <Compile Include="Controls\GraphPartsDataTemplateSelector.cs" />
+    <Compile Include="Controls\ManipulationDeltaAction.cs" />
     <Compile Include="Controls\MouseButtonEventArgsToPointConverter.cs" />
+    <Compile Include="Controls\OpenMenuFlyoutAction.cs" />
     <Compile Include="Controls\SetterValueBindingHelper.cs" />
     <Compile Include="Controls\ToggleButtonOnManipulationDelta.cs" />
     <Compile Include="Controls\VisibleEdgeFromMenuFlyout.cs" />
     <Compile Include="Controls\VisibleEdgeToMenuFlyout.cs" />
+    <Compile Include="Models\Edge.cs" />
+    <Compile Include="Models\Graph.cs" />
+    <Compile Include="Models\Node.cs" />
     <Compile Include="ViewModels\MainPageViewModels.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -134,9 +145,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

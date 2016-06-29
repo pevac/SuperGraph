@@ -7,18 +7,18 @@ using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using SupperGraph.Models;
 
 namespace SupperGraph.Controls
 {
-    public class MouseButtonEventArgsToPointConverter : IValueConverter
+    public class CursorPointControl : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var args = (TappedRoutedEventArgs)value;
+            var args = (PointerRoutedEventArgs)value;
             var element = (FrameworkElement)parameter;
-            var point = args.GetPosition(element);
-            return new Node(point);
+
+            var point = args.GetCurrentPoint(element);
+            return new Point(point.Position.X, point.Position.Y);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

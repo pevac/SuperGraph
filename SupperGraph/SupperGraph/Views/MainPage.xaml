@@ -7,6 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:mvvm="using:Prism.Windows.Mvvm"
+    xmlns:viewModels="using:SupperGraph.ViewModels"
+    xmlns:controls="using:SupperGraph.Controls"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
     <Page.Resources>
@@ -624,18 +628,19 @@
                     <ScrollViewer Style="{StaticResource ScrollViewerStyle}">
                         <Grid>
                             <Canvas x:Name="Background" 
-                                IsTapEnabled="False" 
-            Width="{Binding ActualWidth, ElementName=RootCanvas}"
-            Height="{Binding ActualHeight, ElementName=RootCanvas}"/>
+                                    IsTapEnabled="False" 
+                                    Width="{Binding ActualWidth, ElementName=RootCanvas}"
+                                    Height="{Binding ActualHeight, ElementName=RootCanvas}"/>
                             <ItemsControl  x:Name="LayoutRoot" 
                                    ItemsSource="{Binding Source={StaticResource ViewModel}, Path=EasyGraph, Converter={StaticResource EasyGraphToGraphParts}}"
                                    ItemTemplateSelector="{StaticResource GraphPartsDataTemplateSelector}" >
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <Canvas x:Name="RootCanvas"  Opacity="0.5"
-                                        IsTapEnabled ="{Binding Source={StaticResource ViewModel},  Path=IsTappedEnableProperty}"  
-                                        IsRightTapEnabled="True"
-                                        Background="{StaticResource CanvasBackgroundBrush}" />
+                                        <Canvas x:Name="RootCanvas"  
+                                                Opacity="0.5"
+                                                IsTapEnabled ="{Binding Source={StaticResource ViewModel},  Path=IsTappedEnableProperty}"  
+                                                IsRightTapEnabled="True"
+                                                Background="{StaticResource CanvasBackgroundBrush}" />
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemContainerStyle>
@@ -703,8 +708,11 @@
                         </StackPanel>
                     </Grid>
                     <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"  Margin="0"   BorderThickness="3" BorderBrush="LightGray">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  Margin="5" Text="{Binding Source={StaticResource ViewModel}, Path=PointCursor}"/>
+                        <StackPanel Orientation="Horizontal" Background="GhostWhite">
+                            <TextBlock Text="X=" Width="Auto" Margin="5,5,0,5"/>
+                            <TextBlock Text="{Binding  Source={StaticResource ViewModel}, Path=PointCursor.X}" Width="60" Margin="0,5,5,5"/>
+                            <TextBlock Text="Y=" Width="Auto" Margin="5,5,0,5"/>
+                            <TextBlock Text="{Binding  Source={StaticResource ViewModel}, Path=PointCursor.Y}" Width="60" Margin="0,5,5,5"/>
                         </StackPanel>
                     </Border>
                 </Grid>

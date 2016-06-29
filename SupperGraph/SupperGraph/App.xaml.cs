@@ -29,13 +29,10 @@ namespace SupperGraph
     sealed partial class App : PrismApplication
     {
         private readonly IUnityContainer _container = new UnityContainer();
+
         public App()
         {
             this.InitializeComponent();
-            using (var db = new GraphContext())
-            {
-                db.Database.Migrate();
-            }
         }
 
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)

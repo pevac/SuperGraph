@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using MyToolkit.Command;
 using Prism.Commands;
+using SupperGraph.Models;
 
 namespace SupperGraph.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
         private bool _isPaneOpenProperty;
-        private string _pointCursor;
+        private Point _pointCursor;
         private bool _isTappedEnableProperty;
         private Node _editNode;
         private double _width;
@@ -26,7 +27,7 @@ namespace SupperGraph.ViewModels
 
             PointCursoRelayCommand = new RelayCommand<Point>(point =>
             {
-                PointCursor = string.Format("X: " + Math.Round(point.X, 0) + "  " + "Y: " + Math.Round(point.Y, 0));
+                PointCursor = point;
             });
             IsOpenSpitViewPanel = new DelegateCommand(() =>
             {
@@ -135,7 +136,7 @@ namespace SupperGraph.ViewModels
             get { return _isPaneOpenProperty; }
             set { SetProperty(ref _isPaneOpenProperty, value); }
         }
-        public string PointCursor
+        public Point PointCursor
         {
             get { return _pointCursor; }
             set { SetProperty(ref _pointCursor, value); }
