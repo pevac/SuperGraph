@@ -60,12 +60,12 @@ namespace SupperGraph.ViewModels
             {
                 OnPropertyChanged(nameof(EasyGraph));
             });
-            DeleteCommand = new RelayCommand<Node>((node) =>
+            DeleteNodeCommand = new RelayCommand<Node>((node) =>
             {
                 EasyGraph.RemoveNode(node.NodeId);
                 OnPropertyChanged(nameof(EasyGraph));
             });
-            OpenEditRelayCommand = new RelayCommand<Node>((node) =>
+            OpenEditNodePanelRelayCommand = new RelayCommand<Node>((node) =>
             {
                 Width = 150;
                 EditNode = EasyGraph.FindByValue(node.NodeId);
@@ -103,9 +103,9 @@ namespace SupperGraph.ViewModels
         public DelegateCommand DisabledDelegateCommand { get; private set; }
 
 
-        public RelayCommand<Node> DeleteCommand { get; private set; }
+        public RelayCommand<Node> DeleteNodeCommand { get; private set; }
         public RelayCommand<Node> AddNodeRelayCommand { get; private set; }
-        public RelayCommand<Node> OpenEditRelayCommand { get; private set; }
+        public RelayCommand<Node> OpenEditNodePanelRelayCommand { get; private set; }
         public RelayCommand CloseEditRelayCommand { get; private set; }
         public RelayCommand<Point> PointCursoRelayCommand { get; private set; }
         public RelayCommand<Node> ManipulationDeltaRelayCommand { get; }

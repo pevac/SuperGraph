@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using SupperGraph.Models;
 
-namespace SupperGraph.Controls
+namespace SupperGraph.Converters
 {
     public class ToggleButtonOnManipulationDelta : IValueConverter
     {

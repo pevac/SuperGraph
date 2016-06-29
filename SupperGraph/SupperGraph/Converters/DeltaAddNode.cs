@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
-using SupperGraph.Models;
 
-namespace SupperGraph.Controls
+namespace SupperGraph.Converters
 {
-    public class EdgeNodeConverter : IValueConverter
+    public class DeltaAddNode : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var node = parameter as Node;
-            return node ?? new Node();
+            const double delta = 15;
+            var valuenode = (double)value;
+            var node = valuenode - delta;
+            return node;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

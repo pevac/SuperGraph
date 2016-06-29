@@ -11,20 +11,19 @@
     xmlns:controls="using:SupperGraph.Controls"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:converters="using:SupperGraph.Converters"
     mvvm:ViewModelLocator.AutoWireViewModel="True">
 
     <Page.Resources>
 
         <viewModels:MainPageViewModel x:Key="ViewModel" />
-        <controls:CursorPointControl x:Key="CursorPointControl"/>
-        <controls:MouseButtonEventArgsToPointConverter x:Key="MouseButtonEventArgsToPointConverter" />
-        <controls:DeltaAddNode x:Key="DeltaAddNode"/>
-        <controls:EasyGraphToGraphParts x:Key="EasyGraphToGraphParts"/>
-        <controls:ToggleButtonOnManipulationDelta x:Key="ToggleButtonOnManipulationDelta"/>
-        <controls:EditNodeConverter x:Key="EditNodeConverter"/>
-        <controls:EdgeNodeConverter x:Key="EdgeNodeConverter"/>
-        <controls:VisibleEdgeFromMenuFlyout x:Key="VisibleEdgeFromMenuFlyout"/>
-        <controls:VisibleEdgeToMenuFlyout x:Key="VisibleEdgeToMenuFlyout"/>
+        <converters:CursorPointControl x:Key="CursorPointControl"/>
+        <converters:MouseButtonEventArgsToPointConverter x:Key="MouseButtonEventArgsToPointConverter" />
+        <converters:DeltaAddNode x:Key="DeltaAddNode"/>
+        <converters:EasyGraphToGraphParts x:Key="EasyGraphToGraphParts"/>
+        <converters:ToggleButtonOnManipulationDelta x:Key="ToggleButtonOnManipulationDelta"/>
+        <converters:VisibleEdgeFromMenuFlyout x:Key="VisibleEdgeFromMenuFlyout"/>
+        <converters:VisibleEdgeToMenuFlyout x:Key="VisibleEdgeToMenuFlyout"/>
 
         <controls:GraphPartsDataTemplateSelector x:Key="GraphPartsDataTemplateSelector">
             <controls:GraphPartsDataTemplateSelector.EdgeDataTemplate>
@@ -54,11 +53,11 @@
                             <MenuFlyout x:Name="MenuFlyout" Placement="Top">
                                 <MenuFlyoutItem x:Name="Edit" 
                                                 Text="Edit" 
-                                                Command="{Binding Source={StaticResource ViewModel}, Path=OpenEditRelayCommand}"
+                                                Command="{Binding Source={StaticResource ViewModel}, Path=OpenEditNodePanelRelayCommand}"
                                                 CommandParameter="{Binding}"/>
                                 <MenuFlyoutItem x:Name="Delete" 
                                                 Text="Delete"
-                                                Command="{Binding Source={StaticResource ViewModel},  Path=DeleteCommand}"
+                                                Command="{Binding Source={StaticResource ViewModel},  Path=DeleteNodeCommand}"
                                                 CommandParameter="{Binding}"/>
                                 <MenuFlyoutItem x:Name="RightNode"
                                                 Command="{Binding Source={StaticResource ViewModel}, Path=EdgeVertexNodeRelayCommand}"

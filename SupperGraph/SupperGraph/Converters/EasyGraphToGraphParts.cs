@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
 using MyToolkit.Collections;
 using SupperGraph.Models;
 
-namespace SupperGraph.Controls
+namespace SupperGraph.Converters
 {
    
         public class EasyGraphToGraphParts : IValueConverter
