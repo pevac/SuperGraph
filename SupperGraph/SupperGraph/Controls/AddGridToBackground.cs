@@ -34,18 +34,26 @@ namespace SupperGraph.Controls
             var h = mainCanvas.ActualHeight;
 
             mainCanvas.Children.Clear();
+            for (int x = 100; x < w; x += 100)
+            {
+                mainCanvas.Children.Add(AddLineToBackground(x, 0, x, h, 0.5));
+            }
+            for (int y = 100; y < h; y += 100)
+            {
+                mainCanvas.Children.Add(AddLineToBackground(0, y, w, y, 0.5));
+            }
             for (int x = 10; x < w; x += 10)
             {
-                mainCanvas.Children.Add(AddLineToBackground(x, 0, x, h));
+                mainCanvas.Children.Add(AddLineToBackground(x, 0, x, h, 0.2));
             }
             for (int y = 10; y < h; y += 10)
             {
-                mainCanvas.Children.Add(AddLineToBackground(0, y, w, y));
+                mainCanvas.Children.Add(AddLineToBackground(0, y, w, y, 0.2));
             }
             return null;
         }
 
-        Line AddLineToBackground(double x1, double y1, double x2, double y2)
+        Line AddLineToBackground(double x1, double y1, double x2, double y2, double thick)
         {
             var line = new Line()
             {
@@ -55,7 +63,7 @@ namespace SupperGraph.Controls
                 Y2 = y2,
                 IsTapEnabled = false,
                 Stroke = new SolidColorBrush(Windows.UI.Colors.Black),
-                StrokeThickness = 0.2,
+                StrokeThickness = thick,
             };
             return line;
         }

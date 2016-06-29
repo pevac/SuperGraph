@@ -632,8 +632,8 @@
                                     Width="{Binding ActualWidth, ElementName=RootCanvas}"
                                     Height="{Binding ActualHeight, ElementName=RootCanvas}"/>
                             <ItemsControl  x:Name="LayoutRoot" 
-                                   ItemsSource="{Binding Source={StaticResource ViewModel}, Path=EasyGraph, Converter={StaticResource EasyGraphToGraphParts}}"
-                                   ItemTemplateSelector="{StaticResource GraphPartsDataTemplateSelector}" >
+                                           ItemsSource="{Binding Source={StaticResource ViewModel}, Path=EasyGraph, Converter={StaticResource EasyGraphToGraphParts}}"
+                                           ItemTemplateSelector="{StaticResource GraphPartsDataTemplateSelector}" >
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <Canvas x:Name="RootCanvas"  
