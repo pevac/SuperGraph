@@ -102,7 +102,6 @@ namespace SupperGraph.ViewModels
         public DelegateCommand DeleteGraphCommand { get; private set; }
         public DelegateCommand DisabledDelegateCommand { get; private set; }
 
-
         public RelayCommand<Node> DeleteNodeCommand { get; private set; }
         public RelayCommand<Node> AddNodeRelayCommand { get; private set; }
         public RelayCommand<Node> OpenEditNodePanelRelayCommand { get; private set; }
@@ -151,6 +150,5 @@ namespace SupperGraph.ViewModels
             get { return _addEdgeFlyoutProperty; }
             set { SetProperty(ref _addEdgeFlyoutProperty, value); }
         }
-
     }
 }

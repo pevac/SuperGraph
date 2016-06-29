@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation;
+using Windows.Graphics.Imaging;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -29,24 +31,23 @@ namespace SupperGraph.Controls
                     mainCanvas = (Canvas)element;
                 }
             }
-
             var w = mainCanvas.ActualWidth;
             var h = mainCanvas.ActualHeight;
-
             mainCanvas.Children.Clear();
-            for (int x = 100; x < w; x += 100)
+
+            for (var x = 100; x < w; x += 100)
             {
                 mainCanvas.Children.Add(AddLineToBackground(x, 0, x, h, 0.5));
             }
-            for (int y = 100; y < h; y += 100)
+            for (var y = 100; y < h; y += 100)
             {
                 mainCanvas.Children.Add(AddLineToBackground(0, y, w, y, 0.5));
             }
-            for (int x = 10; x < w; x += 10)
+            for (var x = 10; x < w; x += 10)
             {
                 mainCanvas.Children.Add(AddLineToBackground(x, 0, x, h, 0.2));
             }
-            for (int y = 10; y < h; y += 10)
+            for (var y = 10; y < h; y += 10)
             {
                 mainCanvas.Children.Add(AddLineToBackground(0, y, w, y, 0.2));
             }
