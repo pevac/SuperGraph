@@ -52,54 +52,29 @@
                         </ToolTipService.ToolTip>
                         <FlyoutBase.AttachedFlyout>
                             <MenuFlyout x:Name="MenuFlyout" Placement="Top">
-                                <MenuFlyoutItem x:Name="Edit" Text="Edit" >
-                                    <interactivity:Interaction.Behaviors>
-                                        <core:EventTriggerBehavior EventName="Click"  >
-                                            <core:InvokeCommandAction 
+                                <MenuFlyoutItem x:Name="Edit" 
+                                                Text="Edit" 
                                                 Command="{Binding Source={StaticResource ViewModel}, Path=OpenEditRelayCommand}"
-                                                InputConverter="{StaticResource EditNodeConverter}" 
-                                                InputConverterParameter="{Binding}"/>
-                                        </core:EventTriggerBehavior>
-                                    </interactivity:Interaction.Behaviors>
-                                </MenuFlyoutItem>
-                                <MenuFlyoutItem x:Name="Delete" Text="Delete">
-                                    <interactivity:Interaction.Behaviors>
-                                        <core:EventTriggerBehavior EventName="Click"  >
-                                            <controls:FlyoutAction Command="{Binding Source={StaticResource ViewModel},  Path=DeleteCommand}"/>
-                                        </core:EventTriggerBehavior>
-                                    </interactivity:Interaction.Behaviors>
-                                </MenuFlyoutItem>
-                                <MenuFlyoutItem x:Name="RightNode" Text="Edge from"  Visibility="{Binding Source={StaticResource ViewModel}, Path=AddEdgeFlyoutProperty, Converter={StaticResource VisibleEdgeFromMenuFlyout}}">
-                                    <interactivity:Interaction.Behaviors>
-                                        <core:EventTriggerBehavior EventName="Click"  >
-                                            <core:InvokeCommandAction 
+                                                CommandParameter="{Binding}"/>
+                                <MenuFlyoutItem x:Name="Delete" 
+                                                Text="Delete"
+                                                Command="{Binding Source={StaticResource ViewModel},  Path=DeleteCommand}"
+                                                CommandParameter="{Binding}"/>
+                                <MenuFlyoutItem x:Name="RightNode"
                                                 Command="{Binding Source={StaticResource ViewModel}, Path=EdgeVertexNodeRelayCommand}"
-                                                InputConverter="{StaticResource EdgeNodeConverter}" 
-                                                InputConverterParameter="{Binding}"/>
-                                        </core:EventTriggerBehavior>
-                                    </interactivity:Interaction.Behaviors>
-                                </MenuFlyoutItem>
-                                <MenuFlyoutItem x:Name="LeftEdgeUndirect" Text="Undirect Edge to" Visibility="{Binding Source={StaticResource ViewModel}, Path=AddEdgeFlyoutProperty, Converter={StaticResource VisibleEdgeToMenuFlyout}}">
-                                    <interactivity:Interaction.Behaviors>
-                                        <core:EventTriggerBehavior EventName="Click"  >
-                                            <core:InvokeCommandAction 
+                                                Text="Edge from"  
+                                                Visibility="{Binding Source={StaticResource ViewModel}, Path=AddEdgeFlyoutProperty, Converter={StaticResource VisibleEdgeFromMenuFlyout}}"
+                                                CommandParameter="{Binding}"/>
+                                <MenuFlyoutItem x:Name="LeftEdgeUndirect" 
                                                 Command="{Binding Source={StaticResource ViewModel}, Path=AddEdgeUndirectRelayCommand}"
-                                                InputConverter="{StaticResource EdgeNodeConverter}" 
-                                                InputConverterParameter="{Binding}"/>
-                                        </core:EventTriggerBehavior>
-                                    </interactivity:Interaction.Behaviors>
-                                </MenuFlyoutItem>
-                                <MenuFlyoutItem x:Name="LeftEdgeDirect" Text="Direct Edge to" Visibility="{Binding Source={StaticResource ViewModel}, Path=AddEdgeFlyoutProperty, Converter={StaticResource VisibleEdgeToMenuFlyout}}">
-                                    <interactivity:Interaction.Behaviors>
-                                        <core:EventTriggerBehavior EventName="Click"  >
-                                            <core:InvokeCommandAction 
+                                                Text="Undirect Edge to" 
+                                                Visibility="{Binding Source={StaticResource ViewModel}, Path=AddEdgeFlyoutProperty, Converter={StaticResource VisibleEdgeToMenuFlyout}}"
+                                                CommandParameter="{Binding}"/>
+                                <MenuFlyoutItem x:Name="LeftEdgeDirect" 
                                                 Command="{Binding Source={StaticResource ViewModel}, Path=AddEdgeDirectRelayCommand}"
-                                                InputConverter="{StaticResource EdgeNodeConverter}" 
-                                                InputConverterParameter="{Binding}"/>
-                                        </core:EventTriggerBehavior>
-                                    </interactivity:Interaction.Behaviors>
-                                </MenuFlyoutItem>
-
+                                                Text="Direct Edge to" 
+                                                Visibility="{Binding Source={StaticResource ViewModel}, Path=AddEdgeFlyoutProperty, Converter={StaticResource VisibleEdgeToMenuFlyout}}"
+                                                CommandParameter="{Binding}"/>
                             </MenuFlyout>
                         </FlyoutBase.AttachedFlyout>
                         <interactivity:Interaction.Behaviors>
@@ -116,7 +91,6 @@
                                 <core:InvokeCommandAction
                 Command="{Binding Source={StaticResource ViewModel},  Path=ManipulationCompletedRelayCommand, Mode=OneWay}"/>
                             </core:EventTriggerBehavior>
-
                         </interactivity:Interaction.Behaviors>
                     </ToggleButton>
                 </DataTemplate>
