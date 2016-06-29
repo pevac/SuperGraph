@@ -105,11 +105,12 @@ namespace SupperGraph.ViewModels
                 }
                 else
                 {
-                    if (EdgeNode.NodeId == node.NodeId)
-                    {
-                        return;
-                    }
-                    else if (ChooseDirectOrUndirectEdge == true)
+                    //if (EdgeNode.NodeId == node.NodeId)
+                    //{
+                    //    return;
+                    //}
+                    //else 
+                    if (ChooseDirectOrUndirectEdge == true)
                     {
                         EasyGraph.AdDirectedEdge(EdgeNode.NodeId, node.NodeId);
                     }

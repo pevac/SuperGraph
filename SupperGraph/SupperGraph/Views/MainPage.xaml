@@ -24,8 +24,14 @@
         <converters:ToggleButtonOnManipulationDelta x:Key="ToggleButtonOnManipulationDelta"/>
         <converters:VisibleEdgeFromMenuFlyout x:Key="VisibleEdgeFromMenuFlyout"/>
         <converters:VisibleEdgeToMenuFlyout x:Key="VisibleEdgeToMenuFlyout"/>
+        <converters:EdgeToBezierSegmentConverter x:Key="EdgeToBezierSegmentConverter"/>
 
         <controls:GraphPartsDataTemplateSelector x:Key="GraphPartsDataTemplateSelector">
+            <controls:GraphPartsDataTemplateSelector.LoopDataTemplate>
+                <DataTemplate>
+                    <Path Stroke="Black"  StrokeThickness="0.5"  Data="{Binding LeftNode, Converter={StaticResource EdgeToBezierSegmentConverter}}"/>
+                </DataTemplate>
+            </controls:GraphPartsDataTemplateSelector.LoopDataTemplate>
             <controls:GraphPartsDataTemplateSelector.EdgeDataTemplate>
                 <DataTemplate>
                     <Line Stroke="Black"  
