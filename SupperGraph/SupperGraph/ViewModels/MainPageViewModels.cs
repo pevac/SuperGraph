@@ -43,6 +43,7 @@ namespace SupperGraph.ViewModels
             AllowAddNodeCommand = new DelegateCommand(() =>
             {
                 IsTappedEnableProperty = true;
+                AllowAddEdge = false;
             });
             DeleteGraphCommand = new DelegateCommand(() =>
             {
@@ -105,11 +106,6 @@ namespace SupperGraph.ViewModels
                 }
                 else
                 {
-                    //if (EdgeNode.NodeId == node.NodeId)
-                    //{
-                    //    return;
-                    //}
-                    //else 
                     if (ChooseDirectOrUndirectEdge == true)
                     {
                         EasyGraph.AdDirectedEdge(EdgeNode.NodeId, node.NodeId);
@@ -125,11 +121,13 @@ namespace SupperGraph.ViewModels
             AllowAddDirectEdgeCommand = new DelegateCommand(() =>
             {
                 AllowAddEdge = true;
+                IsTappedEnableProperty = false;
                 ChooseDirectOrUndirectEdge = true;
             });
             AllowAddUndirectEdgeCommand = new DelegateCommand(() =>
             {
                 ChooseDirectOrUndirectEdge = false;
+                IsTappedEnableProperty = false;
                 AllowAddEdge = true;
             });
         }

@@ -96,11 +96,13 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\AddGridToBackground.cs" />
+    <Compile Include="Controls\LineColorAction.cs" />
     <Compile Include="Converters\CursorPointControl.cs" />
     <Compile Include="Converters\DeltaAddNode.cs" />
     <Compile Include="Converters\EasyGraphToGraphParts.cs" />
     <Compile Include="Controls\GraphPartsDataTemplateSelector.cs" />
     <Compile Include="Converters\EdgeToBezierSegmentConverter.cs" />
+    <Compile Include="Converters\LineColorConverter.cs" />
     <Compile Include="Converters\MouseButtonEventArgsToPointConverter.cs" />
     <Compile Include="Controls\OpenMenuFlyoutAction.cs" />
     <Compile Include="Controls\SetterValueBindingHelper.cs" />

@@ -25,27 +25,39 @@
         <converters:VisibleEdgeFromMenuFlyout x:Key="VisibleEdgeFromMenuFlyout"/>
         <converters:VisibleEdgeToMenuFlyout x:Key="VisibleEdgeToMenuFlyout"/>
         <converters:EdgeToBezierSegmentConverter x:Key="EdgeToBezierSegmentConverter"/>
+        <converters:LineColorConverter x:Key="LineColorConverter"/>
 
         <controls:GraphPartsDataTemplateSelector x:Key="GraphPartsDataTemplateSelector">
             <controls:GraphPartsDataTemplateSelector.LoopDataTemplate>
                 <DataTemplate>
-                    <Path Stroke="Black"  StrokeThickness="0.5"  Data="{Binding LeftNode, Converter={StaticResource EdgeToBezierSegmentConverter}}"/>
+                    <Path Stroke="Black"  
+                          StrokeThickness="0.5"  
+                          Data="{Binding LeftNode, Converter={StaticResource EdgeToBezierSegmentConverter}}"/>
                 </DataTemplate>
             </controls:GraphPartsDataTemplateSelector.LoopDataTemplate>
             <controls:GraphPartsDataTemplateSelector.EdgeDataTemplate>
                 <DataTemplate>
                     <Line Stroke="Black"  
-                          IsTapEnabled="False"
                           X1="{Binding LeftNode.X}"
                           X2="{Binding RightNode.X}"
                           Y1="{Binding LeftNode.Y}"
-                          Y2="{Binding RightNode.Y}" />
+                          Y2="{Binding RightNode.Y}" >
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="Tapped">
+                                <!--<core:InvokeCommandAction
+                                    Command="{Binding Source={StaticResource ViewModel}, Path=ManipulationCompletedRelayCommand}"
+                                    InputConverter="{StaticResource LineColorConverter}"
+                                    InputConverterParameter="{Binding}"/>-->
+                                  <controls:LineColorAction/>
+               
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
+                    </Line>
                 </DataTemplate>
             </controls:GraphPartsDataTemplateSelector.EdgeDataTemplate>
             <controls:GraphPartsDataTemplateSelector.NodeDataTemplate>
                 <DataTemplate >
                     <ToggleButton   Content="{Binding Name}"
-                                    
                                     Style="{StaticResource ToggleButtonStyle}">
                         <ToolTipService.ToolTip>
                             <ToolTip Placement="Mouse"   BorderThickness="0" >
