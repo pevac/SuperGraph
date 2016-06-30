@@ -10,11 +10,16 @@ namespace SupperGraph.Models
     {
         public Edge(Node leftNode, Node rightNode)
         {
+            ++Count;
             LeftNode = leftNode;
             RightNode = rightNode;
+            EdgeId = Count;
         }
 
+        public  int EdgeId { get; }
+        public static int Count { get;  set; }
         public Node LeftNode { get; }
         public Node RightNode { get; }
+        public bool IsDirect { get; }
     }
 }

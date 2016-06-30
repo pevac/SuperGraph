@@ -97,8 +97,7 @@
     </Compile>
     <Compile Include="Controls\AddGridToBackground.cs" />
     <Compile Include="Controls\LineColorAction.cs" />
-    <Compile Include="Controls\LineManipulationDeltaAction.cs" />
-    <Compile Include="Controls\ToggleButtonOnManipulationDeltaAction.cs" />
+    <Compile Include="Controls\ManipulationDeltaAction.cs" />
     <Compile Include="Converters\CursorPointControl.cs" />
     <Compile Include="Converters\DeltaAddNode.cs" />
     <Compile Include="Converters\EasyGraphToGraphParts.cs" />
@@ -108,7 +107,6 @@
     <Compile Include="Converters\MouseButtonEventArgsToPointConverter.cs" />
     <Compile Include="Controls\OpenMenuFlyoutAction.cs" />
     <Compile Include="Controls\SetterValueBindingHelper.cs" />
-    <Compile Include="Converters\ToggleButtonOnManipulationDelta.cs" />
     <Compile Include="Converters\VisibleEdgeFromMenuFlyout.cs" />
     <Compile Include="Converters\VisibleEdgeToMenuFlyout.cs" />
     <Compile Include="Models\Edge.cs" />

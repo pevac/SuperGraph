@@ -21,7 +21,7 @@
         <converters:MouseButtonEventArgsToPointConverter x:Key="MouseButtonEventArgsToPointConverter" />
         <converters:DeltaAddNode x:Key="DeltaAddNode"/>
         <converters:EasyGraphToGraphParts x:Key="EasyGraphToGraphParts"/>
-        <converters:ToggleButtonOnManipulationDelta x:Key="ToggleButtonOnManipulationDelta"/>
+        <!--<converters:ToggleButtonOnManipulationDelta x:Key="ToggleButtonOnManipulationDelta"/>-->
         <converters:VisibleEdgeFromMenuFlyout x:Key="VisibleEdgeFromMenuFlyout"/>
         <converters:VisibleEdgeToMenuFlyout x:Key="VisibleEdgeToMenuFlyout"/>
         <converters:EdgeToBezierSegmentConverter x:Key="EdgeToBezierSegmentConverter"/>
@@ -31,8 +31,15 @@
             <controls:GraphPartsDataTemplateSelector.LoopDataTemplate>
                 <DataTemplate>
                     <Path Stroke="Black"  
+                          ManipulationMode="All"
                           StrokeThickness="0.5"  
-                          Data="{Binding LeftNode, Converter={StaticResource EdgeToBezierSegmentConverter}}"/>
+                          Data="{Binding LeftNode, Converter={StaticResource EdgeToBezierSegmentConverter}}">
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="Tapped">
+                                <controls:LineColorAction/>
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
+                    </Path>
                 </DataTemplate>
             </controls:GraphPartsDataTemplateSelector.LoopDataTemplate>
             <controls:GraphPartsDataTemplateSelector.EdgeDataTemplate>
@@ -46,13 +53,6 @@
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="Tapped">
                                   <controls:LineColorAction/>
-                            </core:EventTriggerBehavior>
-                            <core:EventTriggerBehavior EventName="ManipulationDelta">
-                                <controls:LineManipulationDeltaAction/>
-                            </core:EventTriggerBehavior>
-                            <core:EventTriggerBehavior EventName="ManipulationCompleted">
-                                <core:InvokeCommandAction
-                Command="{Binding Source={StaticResource ViewModel},  Path=ManipulationCompletedRelayCommand, Mode=OneWay}"/>
                             </core:EventTriggerBehavior>
                         </interactivity:Interaction.Behaviors>
                     </Line>
@@ -102,17 +102,6 @@
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="RightTapped">
                                 <controls:OpenMenuFlyoutAction />
-                            </core:EventTriggerBehavior>
-                            <core:EventTriggerBehavior EventName="ManipulationDelta">
-                                <controls:ToggleButtonOnManipulationDeltaAction/>
-                                <!--<core:InvokeCommandAction
-                Command="{Binding Source={StaticResource ViewModel},  Path=ManipulationDeltaRelayCommand, Mode=OneWay}"
-                InputConverter="{StaticResource ToggleButtonOnManipulationDelta}"
-                InputConverterParameter="{Binding Source={StaticResource ViewModel}}"/>-->
-                            </core:EventTriggerBehavior>
-                            <core:EventTriggerBehavior EventName="ManipulationCompleted">
-                                <core:InvokeCommandAction
-                Command="{Binding Source={StaticResource ViewModel},  Path=ManipulationCompletedRelayCommand, Mode=OneWay}"/>
                             </core:EventTriggerBehavior>
                             <core:EventTriggerBehavior EventName="Click">
                                 <core:InvokeCommandAction
@@ -678,6 +667,13 @@
                 Command="{Binding Source={StaticResource ViewModel},  Path=PointCursoRelayCommand, Mode=OneWay}"
                 InputConverter="{StaticResource CursorPointControl}"
                 InputConverterParameter="{Binding ElementName=LayoutRoot}" />
+                                </core:EventTriggerBehavior>
+                                <core:EventTriggerBehavior EventName="ManipulationCompleted">
+                                    <core:InvokeCommandAction
+                Command="{Binding Source={StaticResource ViewModel},  Path=ManipulationCompletedRelayCommand, Mode=OneWay}"/>
+                                </core:EventTriggerBehavior>
+                                <core:EventTriggerBehavior EventName="ManipulationDelta">
+                                    <controls:ManipulationDeltaAction/>
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                         </Grid>

@@ -34,11 +34,11 @@ namespace SupperGraph.Models
             return string.Format("{0}", Name);
         }
 
-        public int NodeId { get; set; }
+        public int NodeId { get; }
         public double X { get; set; }
         public double Y { get; set; }
         public string Name { get; set; }
-        public static int Count { get; set; }
+        public static int Count { get;  set; }
 
         public MtObservableCollection<Node> Neighbors { get; set; } = new MtObservableCollection<Node>();
     }

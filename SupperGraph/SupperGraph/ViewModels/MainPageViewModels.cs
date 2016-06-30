@@ -55,13 +55,10 @@ namespace SupperGraph.ViewModels
                 EasyGraph.Nodes.Add(node);
                 OnPropertyChanged(nameof(EasyGraph));
             }, node => IsTappedEnableProperty);
-            ManipulationDeltaRelayCommand = new RelayCommand<Node>(node =>
-            {
-                OnPropertyChanged(nameof(EditNode));
-            });
             ManipulationCompletedRelayCommand = new RelayCommand(() =>
             {
                 OnPropertyChanged(nameof(EasyGraph));
+                OnPropertyChanged(nameof(EditNode));
             });
             DeleteNodeCommand = new RelayCommand<Node>((node) =>
             {
@@ -71,7 +68,9 @@ namespace SupperGraph.ViewModels
             OpenEditNodePanelRelayCommand = new RelayCommand<Node>((node) =>
             {
                 Width = 150;
-                EditNode = EasyGraph.FindByValue(node.NodeId);
+                EditNode = EasyGraph.Nodes.First(m => m.NodeId == node.NodeId);
+                OnPropertyChanged(nameof(EditNode));
+
             });
             CloseEditNodePanelRelayCommand = new RelayCommand(() =>
             {
@@ -80,6 +79,7 @@ namespace SupperGraph.ViewModels
             EditNodeRelayCommand = new RelayCommand(() =>
             {
                 OnPropertyChanged(nameof(EasyGraph));
+                
             });
             AddEdgeVertexFlyoutRelayCommand = new RelayCommand<Node>((node) =>
             {
@@ -145,7 +145,6 @@ namespace SupperGraph.ViewModels
         public RelayCommand<Node> OpenEditNodePanelRelayCommand { get; private set; }
         public RelayCommand CloseEditNodePanelRelayCommand { get; private set; }
         public RelayCommand<Point> PointCursoRelayCommand { get; private set; }
-        public RelayCommand<Node> ManipulationDeltaRelayCommand { get; }
         public RelayCommand ManipulationCompletedRelayCommand { get; }
         public RelayCommand EditNodeRelayCommand { get; }
         public RelayCommand<Node> AddEdgeVertexFlyoutRelayCommand { get; }
@@ -162,11 +161,23 @@ namespace SupperGraph.ViewModels
             get { return _width; }
             set { SetProperty(ref _width, value); }
         }
+
         public Node EditNode
         {
-            get { return _editNode; }
-            set { SetProperty(ref _editNode, value); }
+            get
+            {
+                return _editNode;
+            }
+            set
+            {
+                _editNode = value;
+                OnPropertyChanged(nameof(EditNode));
+            }
         }
+        //{
+        //    get { return _editNode; }
+        //    set { SetProperty(ref _editNode, value); }
+        //}
         public bool IsPaneOpenProperty
         {
             get { return _isPaneOpenProperty; }

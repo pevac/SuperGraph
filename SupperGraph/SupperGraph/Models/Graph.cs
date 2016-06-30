@@ -77,6 +77,7 @@ namespace SupperGraph.Models
         {
             Nodes.Clear();
             Edges.Clear();
+            Edge.Count = 0;
             Node.Count = 0;
         }
 
@@ -96,6 +97,7 @@ namespace SupperGraph.Models
                         edges.Add(new Edge(vertex, node));
                     }
                 }
+             
                 return edges;
             }
         }

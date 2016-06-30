@@ -15,23 +15,59 @@ namespace SupperGraph.Controls
     {
         public object Execute(object sender, object parameter)
         {
-            var line = (Line) sender;
-            var stroke = (SolidColorBrush)line.Stroke;
-            var color = stroke.Color;
-
-            var redBrush = new SolidColorBrush {Color = Colors.Red};
-
-            var blackBrush = new SolidColorBrush {Color = Colors.Black};
-
-            if (color == redBrush.Color)
+            if (sender is Line)
             {
-                line.StrokeThickness = 1;
-                line.Stroke = blackBrush;
+                var line = (Line)sender;
+                var stroke = line.Stroke as SolidColorBrush;
+                if (stroke == null)
+                {
+                    return (object)true;
+                }
+                var color = stroke.Color;
+
+                var redBrush = new SolidColorBrush { Color = Colors.Red };
+
+                var blackBrush = new SolidColorBrush { Color = Colors.Black };
+
+                if (color == redBrush.Color)
+                {
+                    line.StrokeThickness = 2;
+                    line.Stroke = blackBrush;
+                }
+                else
+                {
+                    line.StrokeThickness = 3;
+                    line.Stroke = redBrush;
+                } 
+            }
+            else if (sender is Path)
+            {
+                var path = (Path)sender;
+                var stroke = path.Stroke as SolidColorBrush;
+                if (stroke == null)
+                {
+                    return (object) true;
+                }
+                var color = stroke.Color;
+
+                var redBrush = new SolidColorBrush { Color = Colors.Red };
+
+                var blackBrush = new SolidColorBrush { Color = Colors.Black };
+
+                if (color == redBrush.Color)
+                {
+                    path.StrokeThickness = 1;
+                    path.Stroke = blackBrush;
+                }
+                else
+                {
+                    path.StrokeThickness = 2;
+                    path.Stroke = redBrush;
+                } 
             }
             else
             {
-                line.StrokeThickness = 2;
-                line.Stroke = redBrush;
+                throw new ArgumentException("Wrong item type!", nameof(sender));
             }
 
 
