@@ -37,19 +37,22 @@
             </controls:GraphPartsDataTemplateSelector.LoopDataTemplate>
             <controls:GraphPartsDataTemplateSelector.EdgeDataTemplate>
                 <DataTemplate>
-                    <Line Stroke="Black"  
+                    <Line Stroke="Black"
+                          ManipulationMode="All"
                           X1="{Binding LeftNode.X}"
                           X2="{Binding RightNode.X}"
                           Y1="{Binding LeftNode.Y}"
                           Y2="{Binding RightNode.Y}" >
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="Tapped">
-                                <!--<core:InvokeCommandAction
-                                    Command="{Binding Source={StaticResource ViewModel}, Path=ManipulationCompletedRelayCommand}"
-                                    InputConverter="{StaticResource LineColorConverter}"
-                                    InputConverterParameter="{Binding}"/>-->
                                   <controls:LineColorAction/>
-               
+                            </core:EventTriggerBehavior>
+                            <core:EventTriggerBehavior EventName="ManipulationDelta">
+                                <controls:LineManipulationDeltaAction/>
+                            </core:EventTriggerBehavior>
+                            <core:EventTriggerBehavior EventName="ManipulationCompleted">
+                                <core:InvokeCommandAction
+                Command="{Binding Source={StaticResource ViewModel},  Path=ManipulationCompletedRelayCommand, Mode=OneWay}"/>
                             </core:EventTriggerBehavior>
                         </interactivity:Interaction.Behaviors>
                     </Line>
@@ -101,10 +104,11 @@
                                 <controls:OpenMenuFlyoutAction />
                             </core:EventTriggerBehavior>
                             <core:EventTriggerBehavior EventName="ManipulationDelta">
-                                <core:InvokeCommandAction
+                                <controls:ToggleButtonOnManipulationDeltaAction/>
+                                <!--<core:InvokeCommandAction
                 Command="{Binding Source={StaticResource ViewModel},  Path=ManipulationDeltaRelayCommand, Mode=OneWay}"
                 InputConverter="{StaticResource ToggleButtonOnManipulationDelta}"
-                InputConverterParameter="{Binding Source={StaticResource ViewModel}}"/>
+                InputConverterParameter="{Binding Source={StaticResource ViewModel}}"/>-->
                             </core:EventTriggerBehavior>
                             <core:EventTriggerBehavior EventName="ManipulationCompleted">
                                 <core:InvokeCommandAction

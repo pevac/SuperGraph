@@ -97,6 +97,8 @@
     </Compile>
     <Compile Include="Controls\AddGridToBackground.cs" />
     <Compile Include="Controls\LineColorAction.cs" />
+    <Compile Include="Controls\LineManipulationDeltaAction.cs" />
+    <Compile Include="Controls\ToggleButtonOnManipulationDeltaAction.cs" />
     <Compile Include="Converters\CursorPointControl.cs" />
     <Compile Include="Converters\DeltaAddNode.cs" />
     <Compile Include="Converters\EasyGraphToGraphParts.cs" />
