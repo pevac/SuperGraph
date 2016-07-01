@@ -97,18 +97,19 @@
     </Compile>
     <Compile Include="Controls\AddGridToBackground.cs" />
     <Compile Include="Controls\LineColorAction.cs" />
-    <Compile Include="Controls\ManipulationDeltaAction.cs" />
-    <Compile Include="Converters\CursorPointControl.cs" />
-    <Compile Include="Converters\DeltaAddNode.cs" />
-    <Compile Include="Converters\EasyGraphToGraphParts.cs" />
+    <Compile Include="Controls\LineManipulationDeltaAction.cs" />
+    <Compile Include="Controls\PathManipulationDeltaAction.cs" />
+    <Compile Include="Controls\ToggleButtonManipulationDeltaAction.cs" />
+    <Compile Include="Converters\CursorPointConverter.cs" />
+    <Compile Include="Converters\DeltaAddNodeConverter.cs" />
+    <Compile Include="Converters\EasyGraphToGraphPartsConverter.cs" />
     <Compile Include="Controls\GraphPartsDataTemplateSelector.cs" />
     <Compile Include="Converters\EdgeToBezierSegmentConverter.cs" />
-    <Compile Include="Converters\LineColorConverter.cs" />
     <Compile Include="Converters\MouseButtonEventArgsToPointConverter.cs" />
     <Compile Include="Controls\OpenMenuFlyoutAction.cs" />
     <Compile Include="Controls\SetterValueBindingHelper.cs" />
-    <Compile Include="Converters\VisibleEdgeFromMenuFlyout.cs" />
-    <Compile Include="Converters\VisibleEdgeToMenuFlyout.cs" />
+    <Compile Include="Converters\VisibleEdgeFromMenuFlyoutConverter.cs" />
+    <Compile Include="Converters\VisibleEdgeToMenuFlyoutConverter.cs" />
     <Compile Include="Models\Edge.cs" />
     <Compile Include="Models\Graph.cs" />
     <Compile Include="Models\Node.cs" />

@@ -65,6 +65,21 @@ namespace SupperGraph.ViewModels
                 EasyGraph.RemoveNode(node.NodeId);
                 OnPropertyChanged(nameof(EasyGraph));
             });
+            DeleteEdgeCommand = new RelayCommand<Edge>(edge =>
+            {
+                foreach (var node in EasyGraph.Nodes)
+                {
+                    if (node.NodeId == edge.LeftNode.NodeId)
+                    {
+                        node.Neighbors.Remove(edge.RightNode);
+                    }
+                    if (node.NodeId == edge.RightNode.NodeId)
+                    {
+                        node.Neighbors.Remove(edge.LeftNode);
+                    }
+                }
+                OnPropertyChanged(nameof(EasyGraph));
+            });
             OpenEditNodePanelRelayCommand = new RelayCommand<Node>((node) =>
             {
                 Width = 150;
@@ -141,6 +156,7 @@ namespace SupperGraph.ViewModels
         public DelegateCommand AllowAddUndirectEdgeCommand { get; private set; }
 
         public RelayCommand<Node> DeleteNodeCommand { get; private set; }
+        public RelayCommand<Edge> DeleteEdgeCommand { get; private set; }
         public RelayCommand<Node> AddNodeRelayCommand { get; private set; }
         public RelayCommand<Node> OpenEditNodePanelRelayCommand { get; private set; }
         public RelayCommand CloseEditNodePanelRelayCommand { get; private set; }
@@ -164,20 +180,9 @@ namespace SupperGraph.ViewModels
 
         public Node EditNode
         {
-            get
-            {
-                return _editNode;
-            }
-            set
-            {
-                _editNode = value;
-                OnPropertyChanged(nameof(EditNode));
-            }
+            get { return _editNode; }
+            set { SetProperty(ref _editNode, value); }
         }
-        //{
-        //    get { return _editNode; }
-        //    set { SetProperty(ref _editNode, value); }
-        //}
         public bool IsPaneOpenProperty
         {
             get { return _isPaneOpenProperty; }

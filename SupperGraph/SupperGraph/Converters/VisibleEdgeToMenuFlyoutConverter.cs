@@ -3,12 +3,12 @@ using Windows.UI.Xaml.Data;
 
 namespace SupperGraph.Converters
 {
-    public class VisibleEdgeFromMenuFlyout : IValueConverter
+    public class VisibleEdgeToMenuFlyoutConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var arg = (bool)value;
-            var visibility = arg == false ? "Visible" : "Collapsed";
+            var visibility = arg == true ? "Visible" : "Collapsed";
             return visibility;
         }
 

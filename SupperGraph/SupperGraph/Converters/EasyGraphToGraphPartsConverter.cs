@@ -6,7 +6,7 @@ using SupperGraph.Models;
 namespace SupperGraph.Converters
 {
    
-        public class EasyGraphToGraphParts : IValueConverter
+        public class EasyGraphToGraphPartsConverter : IValueConverter
         {
             private MtObservableCollection<object> _graphParts;
             public object Convert(object value, Type targetType, object parameter, string language)

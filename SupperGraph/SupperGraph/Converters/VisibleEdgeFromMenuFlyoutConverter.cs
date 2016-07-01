@@ -3,14 +3,13 @@ using Windows.UI.Xaml.Data;
 
 namespace SupperGraph.Converters
 {
-    public class DeltaAddNode : IValueConverter
+    public class VisibleEdgeFromMenuFlyoutConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            const double delta = 15;
-            var valuenode = (double)value;
-            var node = valuenode - delta;
-            return node;
+            var arg = (bool)value;
+            var visibility = arg == false ? "Visible" : "Collapsed";
+            return visibility;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
