@@ -16,23 +16,11 @@ namespace SupperGraph.Controls
         {
             FrameworkElement senderElement = sender as FrameworkElement;
             FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+
             flyoutBase.ShowAt(senderElement);
-
-            var eventArgs = parameter as RightTappedRoutedEventArgs;
-            if (eventArgs == null)
-            {
-                return null;
-            }
-
-            var element = eventArgs.OriginalSource as FrameworkElement;
-            if (element == null)
-            {
-                HoldedObject = element.DataContext;
-            }
 
             return null;
         }
 
-        public static object HoldedObject { get; set; }
     }
 }

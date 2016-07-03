@@ -32,12 +32,23 @@
                           ManipulationMode="All"
                           StrokeThickness="0.5"  
                           Data="{Binding LeftNode, Converter={StaticResource EdgeToBezierSegmentConverter}}">
+                        <FlyoutBase.AttachedFlyout>
+                            <MenuFlyout x:Name="MenuFlyout" Placement="Bottom">
+                                <MenuFlyoutItem x:Name="Delete" 
+                                                Text="Delete"
+                                                Command="{Binding Source={StaticResource ViewModel},  Path=DeleteEdgeCommand}"
+                                                CommandParameter="{Binding}"/>
+                            </MenuFlyout>
+                        </FlyoutBase.AttachedFlyout>
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="Tapped">
                                 <controls:LineColorAction/>
                             </core:EventTriggerBehavior>
                             <core:EventTriggerBehavior EventName="ManipulationDelta">
                                 <controls:PathManipulationDeltaAction/>
+                            </core:EventTriggerBehavior>
+                            <core:EventTriggerBehavior EventName="RightTapped">
+                                <controls:OpenMenuFlyoutAction />
                             </core:EventTriggerBehavior>
                         </interactivity:Interaction.Behaviors>
                     </Path>
@@ -52,7 +63,7 @@
                           Y1="{Binding LeftNode.Y}"
                           Y2="{Binding RightNode.Y}" >
                         <FlyoutBase.AttachedFlyout>
-                            <MenuFlyout x:Name="MenuFlyout" Placement="Right">
+                            <MenuFlyout x:Name="MenuFlyout" Placement="Bottom">
                                 <MenuFlyoutItem x:Name="Delete" 
                                                 Text="Delete"
                                                 Command="{Binding Source={StaticResource ViewModel},  Path=DeleteEdgeCommand}"
@@ -133,7 +144,7 @@
         </controls:GraphPartsDataTemplateSelector>
 
         <Style TargetType="ToggleButton" x:Key="ToggleButtonStyle">
-            <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}" />
+            <Setter Property="Background" Value="Green" />
             <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
             <Setter Property="BorderBrush" Value="{ThemeResource SystemControlForegroundTransparentBrush}" />
             <Setter Property="BorderThickness" Value="{ThemeResource ToggleButtonBorderThemeThickness}" />
@@ -647,7 +658,7 @@
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <Canvas x:Name="RootCanvas"  
-                                                Opacity="0.5"
+                                                Opacity="0.8"
                                                 IsTapEnabled ="{Binding Source={StaticResource ViewModel},  Path=IsTappedEnableProperty}"  
                                                 IsRightTapEnabled="True"
                                                 Background="{StaticResource CanvasBackgroundBrush}" />
